@@ -1,10 +1,16 @@
 import { extract } from './extract.ts'
+import { Header } from './header.ts'
 export class InvalidHeaderError extends Error {}
 
 export class InvalidPayloadError extends Error {}
 
-export function decode<H, P>(token: unknown): {
-  header: H
+export function decode<
+  H extends { [key: string]: unknown },
+  P extends { [key: string]: unknown },
+>(
+  token: unknown,
+): {
+  header: H & Partial<Header>
   payload: P
   signature: string
 } {
