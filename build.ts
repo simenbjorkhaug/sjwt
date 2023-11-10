@@ -24,7 +24,7 @@ await build({
       scope: '@bjorkhaug',
     },
     dependencies: {
-      '@bjorkhaug/sbase64url': '^1.1.0',
+      '@bjorkhaug/sbase64url': '^2.0.0',
     },
     repository: {
       type: 'git',
