@@ -45,7 +45,7 @@ export async function verify<H extends Header>(
       }, keyParams),
       key,
       Uint8Array.from(
-        atob(decodeBase64url(signature)),
+        decodeBase64url(signature).split(''),
         (s) => s.charCodeAt(0),
       ),
       new TextEncoder().encode(
