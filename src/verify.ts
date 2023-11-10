@@ -37,6 +37,11 @@ export async function verify<H extends Header>(
     keyParams[key as string] = value
   }
 
+  const bytes = Uint8Array.from(
+    atob(decodeBase64url(signature)),
+    (s) => s.charCodeAt(0),
+  )
+
   if (
     !(await crypto.subtle.verify(
       Object.assign({
@@ -44,7 +49,7 @@ export async function verify<H extends Header>(
         hash: findHashFunction(protectedHeader.alg),
       }, keyParams),
       key,
-      Uint8Array.from(atob(decodeBase64url(signature)), (s) => s.charCodeAt(0)),
+      bytes.buffer,
       new TextEncoder().encode(
         `${encodeBase64url(header)}.${encodeBase64url(payload)}`,
       ),
