@@ -17,8 +17,6 @@ Deno.test('Should be able to decode a valid jwt', () => {
     payload: {},
   })
 
-  console.log(token)
-
   assertEquals(jwt.decode(token), {
     header: {
       alg: 'none',
@@ -28,7 +26,7 @@ Deno.test('Should be able to decode a valid jwt', () => {
       aud: '',
       iat,
       exp,
-    },
+    } as { [key: string]: unknown },
     payload: {},
     signature: '',
   })
