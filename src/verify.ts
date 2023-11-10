@@ -44,10 +44,7 @@ export async function verify<H extends Header>(
         hash: findHashFunction(protectedHeader.alg),
       }, keyParams),
       key,
-      Uint8Array.from(
-        decodeBase64url(signature).split(''),
-        (s) => s.charCodeAt(0),
-      ),
+      Uint8Array.from(atob(decodeBase64url(signature)), (s) => s.charCodeAt(0)),
       new TextEncoder().encode(
         `${encodeBase64url(header)}.${encodeBase64url(payload)}`,
       ),
