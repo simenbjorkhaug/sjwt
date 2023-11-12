@@ -1,4 +1,7 @@
-import { decodeBase64url, encodeBase64url } from 'npm:@bjorkhaug/sbase64url'
+import {
+  decodeBase64url,
+  encodeBase64url,
+} from 'npm:@bjorkhaug/sbase64url@5.0.2'
 import { findAlgorithm, findHashFunction } from './algorithms.ts'
 import { extract } from './extract.ts'
 import { Header } from './header.ts'
@@ -37,11 +40,6 @@ export async function verify<H extends Header>(
     keyParams[key as string] = value
   }
 
-  const bytes = Uint8Array.from(
-    atob(decodeBase64url(signature)),
-    (s) => s.charCodeAt(0),
-  )
-
   if (
     !(await crypto.subtle.verify(
       Object.assign({
@@ -49,7 +47,7 @@ export async function verify<H extends Header>(
         hash: findHashFunction(protectedHeader.alg),
       }, keyParams),
       key,
-      bytes.buffer,
+      decodeBase64url(signature),
       new TextEncoder().encode(
         `${encodeBase64url(header)}.${encodeBase64url(payload)}`,
       ),

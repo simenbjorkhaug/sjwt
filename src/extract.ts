@@ -1,4 +1,4 @@
-import { decodeBase64url } from 'npm:@bjorkhaug/sbase64url'
+import { decodeBase64url } from 'npm:@bjorkhaug/sbase64url@5.0.2'
 
 export class InvalidTokenTypeError extends Error {}
 
@@ -28,15 +28,17 @@ export function extract(token: unknown): [
     throw new MissingTokenPayloadError('Token payload is missing')
   }
 
-  const protectedHeader = JSON.parse(decodeBase64url(header))
+  const protectedHeader = JSON.parse(
+    new TextDecoder().decode(decodeBase64url(header)),
+  )
 
   if (protectedHeader.alg !== 'none' && !signature) {
     throw new MissingTokenSignatureError('Token signature is missing')
   }
 
   return [
-    decodeBase64url(header),
-    decodeBase64url(payload),
+    new TextDecoder().decode(decodeBase64url(header)),
+    new TextDecoder().decode(decodeBase64url(payload)),
     signature,
   ]
 }

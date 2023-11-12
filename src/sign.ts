@@ -1,4 +1,4 @@
-import { encodeBase64url } from 'npm:@bjorkhaug/sbase64url'
+import { encodeBase64url } from 'npm:@bjorkhaug/sbase64url@5.0.2'
 import { findAlgorithm, findHashFunction } from './algorithms.ts'
 import { type Header } from './header.ts'
 import { findDefaultParamsForAlgorithm, Params } from './keys.ts'
@@ -25,9 +25,13 @@ export async function sign<
     )
   }
 
-  const headerAsBase64Url = encodeBase64url(JSON.stringify(header))
+  const headerAsBase64Url = encodeBase64url(
+    JSON.stringify(header),
+  )
 
-  const payloadAsBase64Url = encodeBase64url(JSON.stringify(payload))
+  const payloadAsBase64Url = encodeBase64url(
+    JSON.stringify(payload),
+  )
 
   const keyParams: { [key: string]: unknown } = findDefaultParamsForAlgorithm(
     header.alg,
@@ -46,9 +50,7 @@ export async function sign<
     new TextEncoder().encode(`${headerAsBase64Url}.${payloadAsBase64Url}`),
   )
 
-  const decoded = encodeBase64url(
-    btoa(String.fromCharCode(...new Uint8Array(signature))),
-  )
-
-  return `${headerAsBase64Url}.${payloadAsBase64Url}.${decoded}`
+  return `${headerAsBase64Url}.${payloadAsBase64Url}.${
+    encodeBase64url(signature)
+  }`
 }

@@ -1,6 +1,6 @@
+import { encodeBase64url } from 'npm:@bjorkhaug/sbase64url@5.0.2'
 import { findAlgorithm, findHashFunction } from './algorithms.ts'
 import { Algorithm } from './jws.ts'
-import { encodeBase64url } from 'npm:@bjorkhaug/sbase64url'
 
 async function exportKey(
   key: CryptoKey,
@@ -77,7 +77,9 @@ type ImportParams<T extends Algorithm> = T extends
   : never
 
 class Keys {
-  readonly #kid = encodeBase64url(crypto.getRandomValues(new Uint8Array(8)))
+  readonly #kid = encodeBase64url(
+    crypto.getRandomValues(new Uint8Array(8)),
+  )
   constructor(
     private readonly private_key: JsonWebKey,
     private readonly public_key: JsonWebKey,

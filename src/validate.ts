@@ -14,13 +14,21 @@ export class InvalidJTIError extends Error {}
 
 export class InvalidTokenTypeError extends Error {}
 
+type ValidationClaims = Partial<
+  Pick<Header, 'iss' | 'sub' | 'alg' | 'typ' | 'nbf' | 'aud' | 'jti'>
+>
+
 /**
  * See validation rules: https://www.rfc-editor.org/rfc/rfc9068.txt
  */
-export function validate<H extends Partial<Header> & Pick<Header, 'exp'>>(
-  header: H,
-  validate: Partial<Omit<Header, 'exp' | 'iat'>>,
+export function validate(
+  header: Partial<Header>,
+  validate: ValidationClaims,
 ) {
+  if (!header.exp) {
+    throw new TokenExpiredError('Token expired')
+  }
+
   if (header.exp < Date.now() / 1000) {
     throw new TokenExpiredError('Token expired')
   }
