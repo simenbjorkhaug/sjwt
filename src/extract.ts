@@ -1,4 +1,4 @@
-import { decodeBase64url } from 'npm:@bjorkhaug/sbase64url@5.0.2'
+import { decodeBase64url } from 'npm:@bjorkhaug/sbase64url@5.0.3'
 
 export class InvalidTokenTypeError extends Error {}
 

@@ -1,4 +1,4 @@
-import { encodeBase64url } from 'npm:@bjorkhaug/sbase64url@5.0.2'
+import { encodeBase64url } from 'npm:@bjorkhaug/sbase64url@5.0.3'
 import { findAlgorithm, findHashFunction } from './algorithms.ts'
 import { type Header } from './header.ts'
 import { findDefaultParamsForAlgorithm, Params } from './keys.ts'

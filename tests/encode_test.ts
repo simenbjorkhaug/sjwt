@@ -16,3 +16,21 @@ Deno.test('Should be able to produce an unsigned JWT', () => {
     }) === 'string',
   )
 })
+
+Deno.test('Should not crash even if we generate lots of unsigned tokens', () => {
+  for (let i = 0; i < 10000; i++) {
+    jwt.encode({
+      header: {
+        typ: jwt.constants.TYP,
+        exp: jwt.utils.seconds(Date.now()),
+        iss: '',
+        sub: '',
+        aud: '',
+        iat: jwt.utils.seconds(Date.now()),
+      },
+      payload: {},
+    })
+  }
+
+  assert(true)
+})

@@ -6,7 +6,8 @@
       "npm:@bjorkhaug/sbase64url@3.0.0": "npm:@bjorkhaug/sbase64url@3.0.0",
       "npm:@bjorkhaug/sbase64url@4.0.0": "npm:@bjorkhaug/sbase64url@4.0.0",
       "npm:@bjorkhaug/sbase64url@5.0.0": "npm:@bjorkhaug/sbase64url@5.0.0",
-      "npm:@bjorkhaug/sbase64url@5.0.2": "npm:@bjorkhaug/sbase64url@5.0.2"
+      "npm:@bjorkhaug/sbase64url@5.0.2": "npm:@bjorkhaug/sbase64url@5.0.2",
+      "npm:@bjorkhaug/sbase64url@5.0.3": "npm:@bjorkhaug/sbase64url@5.0.3"
     },
     "npm": {
       "@bjorkhaug/sbase64url@1.0.0": {
@@ -27,6 +28,10 @@
       },
       "@bjorkhaug/sbase64url@5.0.2": {
         "integrity": "sha512-9G8iMp/f6KgcT75SeqhS4TbWETlttGSRSpVJFcRgEt7Gg3/zg1OJCCCuACUBP9XAs+96Lne30hcTJsUFWqVxTw==",
+        "dependencies": {}
+      },
+      "@bjorkhaug/sbase64url@5.0.3": {
+        "integrity": "sha512-WmscNRS+24Eeh+60tDhuCZmtbpefdlFbJBPa22HxQGGt1Qsh7AGhC/vGgUZEx9H0g0GVTrS9BpCBKj/vUosh3w==",
         "dependencies": {}
       }
     }

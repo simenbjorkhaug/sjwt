@@ -1,7 +1,7 @@
 import {
   decodeBase64url,
   encodeBase64url,
-} from 'npm:@bjorkhaug/sbase64url@5.0.2'
+} from 'npm:@bjorkhaug/sbase64url@5.0.3'
 import { findAlgorithm, findHashFunction } from './algorithms.ts'
 import { extract } from './extract.ts'
 import { Header } from './header.ts'
