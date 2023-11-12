@@ -1,4 +1,4 @@
-import { encodeBase64url } from 'npm:@bjorkhaug/sbase64url@5.0.3'
+import { encodeBase64url } from 'npm:@bjorkhaug/sbase64url@5.0.4'
 import { Header } from './header.ts'
 
 export function encode<

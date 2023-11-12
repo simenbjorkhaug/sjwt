@@ -1,4 +1,4 @@
-import { decodeBase64url } from 'npm:@bjorkhaug/sbase64url@5.0.3'
+import { decodeBase64url } from 'npm:@bjorkhaug/sbase64url@5.0.4'
 
 export class InvalidTokenTypeError extends Error {}
 
@@ -17,7 +17,7 @@ export function extract(token: unknown): [
     throw new InvalidTokenTypeError('Token must be a string')
   }
 
-  const [header, payload, signature] = token.replace(/(basic|bearer)/i, '')
+  const [header, payload, signature] = token.replace(/^(basic|bearer)/i, '')
     .trim().split('.')
 
   if (!header) {
